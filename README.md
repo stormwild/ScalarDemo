@@ -67,7 +67,7 @@ Provides central versioning for all packages in the solution.
 
 `nuget.config`:
 
-Set's the package source to the default NuGet feed.
+Sets the package source to the default NuGet feed.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
