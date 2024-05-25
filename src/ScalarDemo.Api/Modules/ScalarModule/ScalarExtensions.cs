@@ -1,18 +1,11 @@
-﻿using System.Text.Json;
+﻿using System.Diagnostics;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing;
+namespace ScalarDemo.Api;
 
-namespace Scalar.AspNetCore;
-
-public static class OpenApiEndpointRouteBuilderExtensions
+public static class ScalarExtensions
 {
-    public static IEndpointConventionBuilder MapScalarApiReference(this IEndpointRouteBuilder endpoints)
-    {
-        return endpoints.MapScalarApiReference(_ => { });
-    }
 
     private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
@@ -21,15 +14,16 @@ public static class OpenApiEndpointRouteBuilderExtensions
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
     };
 
-    public static IEndpointConventionBuilder MapScalarApiReference(this IEndpointRouteBuilder endpoints,
-        Action<ScalarOptions> configureOptions)
+    public static void MapScalarUI(this WebApplication app, Action<ScalarOptions> configureOptions)
     {
+        Debug.WriteLine("Mapping Scalar UI");
+
         var options = new ScalarOptions();
         configureOptions(options);
 
         var configurationJson = JsonSerializer.Serialize(options, JsonSerializerOptions);
 
-        return endpoints.MapGet(options.EndpointPathPrefix + "/{documentName}", (string documentName) =>
+        app.MapGet(options.EndpointPathPrefix + "/{documentName}", (string documentName) =>
             {
                 var title = options.Title ?? $"Scalar API Reference -- {documentName}";
                 return Results.Content(
@@ -58,4 +52,6 @@ public static class OpenApiEndpointRouteBuilderExtensions
             })
             .ExcludeFromDescription();
     }
+
+
 }

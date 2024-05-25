@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Scalar.AspNetCore;
+namespace ScalarDemo.Api;
 
 public class ScalarOptions
 {
