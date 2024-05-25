@@ -6,7 +6,6 @@ namespace ScalarDemo.Api;
 
 public static class ScalarExtensions
 {
-
     private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -52,6 +51,4 @@ public static class ScalarExtensions
             })
             .ExcludeFromDescription();
     }
-
-
 }
