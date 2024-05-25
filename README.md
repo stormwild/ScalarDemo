@@ -1,5 +1,7 @@
 # Scalar Swagger Editor UI Demo
 
+.NET 9.0 will be removing built-in support for Swagger UI. Instead, we can use Scalar to generate beautiful API references from OpenAPI/Swagger files.
+
 [Scalar - Document, Test & Discover APIs](https://scalar.com/)
 
 [scalar/scalar: Beautiful API references from OpenAPI/Swagger files ✨](https://github.com/ScalaR/ScalaR)
